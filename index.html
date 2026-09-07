@@ -123,7 +123,6 @@
     border:1px solid var(--line);
     background:var(--panel);
     padding:14px 14px 22px;
-    transform:rotate(1.4deg);
   }
   .photo-frame img{
     display:block;
@@ -182,30 +181,30 @@
   .tl-item li{margin-bottom:6px;}
 
   /* ---------- projetos ---------- */
-  .proj{
-    border-top:1px solid var(--line);
-    padding:26px 0;
+  .proj-note{color:var(--muted);font-size:14px;max-width:60ch;margin:-16px 0 32px;}
+  .proj-grid{
     display:grid;
-    grid-template-columns:1fr 2.4fr;
-    gap:24px;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .proj{
+    background:var(--bg);
+    padding:24px 22px;
     position:relative;
+    border-top:2px solid transparent;
+    transition:border-color .15s ease, background .15s ease;
   }
-  .proj:last-child{border-bottom:1px solid var(--line);}
-  .proj::before{
-    content:"";
-    position:absolute;left:-32px;top:26px;bottom:26px;
-    width:2px;background:transparent;
-    transition:background .18s ease;
-  }
-  .proj:hover::before{background:var(--gold);}
+  .proj:hover{border-top-color:var(--gold);background:var(--panel);}
   .proj h3{
     font-family:'Fraunces',serif;
     font-weight:500;
-    font-size:21px;
-    margin:0;
+    font-size:18px;
+    margin:0 0 8px;
   }
-  .proj p{margin:0 0 14px;color:#c7cede;font-size:15px;max-width:56ch;}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .proj p{margin:0 0 16px;color:#c7cede;font-size:14px;max-width:40ch;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
   .tag{
     font-family:'IBM Plex Mono',monospace;
     font-size:11px;
@@ -220,8 +219,27 @@
     color:var(--gold);
     text-decoration:none;
     display:inline-block;
-    margin-top:10px;
   }
+  .proj-link:hover{text-decoration:underline;}
+  @media (max-width:880px){
+    .proj-grid{grid-template-columns:1fr;}
+  }
+  @media (min-width:881px) and (max-width:1080px){
+    .proj-grid{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* ---------- cursos ---------- */
+  .courses{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;}
+  .courses li{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .courses .plat{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;}
+  @media (max-width:660px){.courses{grid-template-columns:1fr;}}
 
   /* ---------- contato ---------- */
   #contato h2{margin-bottom:16px;}
@@ -288,6 +306,7 @@
         <a href="#sobre">sobre.md</a>
         <a href="#experiencia">experiencia.md</a>
         <a href="#projetos">projetos.md</a>
+        <a href="#cursos">cursos.md</a>
         <a href="#contato">contato.md</a>
       </nav>
     </div>
@@ -303,7 +322,7 @@
         <div>
           <p class="eyebrow">Desenvolvedora full stack júnior</p>
           <h1 class="title">Ísis Souza Guimarães</h1>
-          <p class="lede">Estudante do 3º ano do ensino médio construindo software profissionalmente desde 2025 — de páginas em Laravel a interfaces em React. Gosto de aprender rápido e entregar coisas que funcionam de verdade.</p>
+          <p class="lede">Estudante do 3º ano do ensino médio, atuando profissionalmente como desenvolvedora full stack desde maio de 2025 — do banco de dados em Laravel até interfaces em React. Aprendo rápido e entrego soluções que funcionam de verdade.</p>
           <div class="cta-row">
             <a class="btn primary" href="#projetos">Ver projetos</a>
             <a class="btn ghost" href="#contato">Falar comigo</a>
@@ -320,7 +339,7 @@
       <section id="sobre">
         <div class="head"><span class="num">01</span><h2>Sobre</h2></div>
         <p>Trabalho meio período como desenvolvedora web, no ciclo completo de back-end — da modelagem do banco de dados até a entrega de funcionalidades — usando Laravel, Blade, phpMyAdmin e MySQL no dia a dia.</p>
-        <p>Fora do trabalho, estudo React, Next.js, Angular e Java com Spring Boot, e uso projetos pessoais para testar essas tecnologias na prática. Estou em busca de estágio, freelances ou uma vaga júnior para continuar crescendo como desenvolvedora.</p>
+        <p>Entre 2023 e 2024 construí uma dezena de projetos pessoais para aprender front-end, consumo de APIs e autenticação — foi essa base que me abriu a primeira oportunidade profissional. Hoje sigo estudando React, Next.js, Angular e Java com Spring Boot, e estou aberta a estágio, freelances ou uma vaga júnior para continuar crescendo.</p>
 
         <div class="stack">
           <div class="stack-group">
@@ -347,7 +366,7 @@
         <div class="timeline">
           <div class="tl-item">
             <p class="tl-role">Desenvolvedora Web — Meio Período</p>
-            <p class="tl-meta">Empresa de Tecnologia · Período vespertino · Fev 2025 – Atual</p>
+            <p class="tl-meta">Empresa de Tecnologia · Período vespertino · Maio 2025 – Atual</p>
             <ul>
               <li>Desenvolvimento e manutenção de sites com Laravel, Blade, phpMyAdmin e MySQL</li>
               <li>Participação em todo o ciclo de back-end, da modelagem do banco à entrega de funcionalidades</li>
@@ -363,68 +382,116 @@
 
       <section id="projetos">
         <div class="head"><span class="num">03</span><h2>Projetos</h2></div>
+        <p class="proj-note">Construídos entre 2023 e 2024, enquanto eu estudava front-end, consumo de APIs e autenticação — a base que me levou à primeira oportunidade profissional em 2025. Novos projetos em breve.</p>
 
-        <div class="proj">
-          <div class="tags">
-            <span class="tag">JavaScript</span><span class="tag">HTML/CSS</span>
+        <div class="proj-grid">
+          <div class="proj">
+            <div class="tags"><span class="tag">HTML/CSS</span></div>
+            <h3>Evolução Sports</h3>
+            <p>Página institucional para uma marca esportiva, com seções de produtos e categorias.</p>
+            <a class="proj-link" href="https://evolucao-sports.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
           </div>
-          <div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">API</span><span class="tag">Catálogo</span></div>
+            <h3>Filmes Gratuitos</h3>
+            <p>Catálogo de filmes com busca e visualização de detalhes, consumindo uma API pública.</p>
+            <a class="proj-link" href="https://filmes-assistir.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">UI/CSS</span></div>
+            <h3>Studio Barbie</h3>
+            <p>Site vitrine em tema lúdico, com foco em layout, grid e responsividade.</p>
+            <a class="proj-link" href="https://barbie-delta.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">React</span></div>
+            <h3>Site Caol</h3>
+            <p>Site institucional fictício construído em React, praticando componentização.</p>
+            <a class="proj-link" href="https://coal-ficticio-react.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">TMDB API</span></div>
+            <h3>Filmes TMDB</h3>
+            <p>Catálogo de filmes construído com a API do TMDB, com busca e detalhes de cada título.</p>
+            <a class="proj-link" href="https://promobit-zeta.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">Teste técnico</span></div>
+            <h3>BookE</h3>
+            <p>Projeto de teste técnico com cadastro e listagem de livros.</p>
+            <a class="proj-link" href="https://teste-tecnico-phi.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">API</span></div>
+            <h3>Filmes Disney</h3>
+            <p>Catálogo de filmes filtrado por temática, praticando consumo de API e paginação.</p>
+            <a class="proj-link" href="https://filmes-disney.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">Auth</span></div>
+            <h3>playerOne</h3>
+            <p>Versão em Next.js do S-Mario: conteúdo liberado somente após login do usuário.</p>
+            <a class="proj-link" href="https://s-mario-next.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">API</span></div>
+            <h3>Marvel</h3>
+            <p>Consumo de API pública com dados de personagens, construído em Next.js.</p>
+            <a class="proj-link" href="https://next-api-rouge.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">JavaScript</span></div>
+            <h3>Desenhos Animados</h3>
+            <p>Catálogo com listagem e busca, praticando organização de componentes e estado.</p>
+            <a class="proj-link" href="https://desenhos-animados.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
+          </div>
+
+          <div class="proj">
+            <div class="tags"><span class="tag">JavaScript</span></div>
             <h3>Gerador de Senhas</h3>
-            <p>Aplicação web para criar senhas aleatórias e seguras, com a quantidade de caracteres definida pelo próprio usuário.</p>
+            <p>Gerador de senhas aleatórias e seguras, com tamanho definido pelo usuário.</p>
+            <a class="proj-link" href="https://gerador-de-senhas-lovat.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
           </div>
-        </div>
 
-        <div class="proj">
-          <div class="tags">
-            <span class="tag">Auth</span><span class="tag">Full stack</span>
-          </div>
-          <div>
-            <h3>S-Mario</h3>
-            <p>Site cujo conteúdo só é exibido depois que o usuário faz login — meu primeiro projeto com autenticação de ponta a ponta.</p>
-          </div>
-        </div>
-
-        <div class="proj">
-          <div class="tags">
-            <span class="tag">API</span><span class="tag">Deezer</span>
-          </div>
-          <div>
-            <h3>Músicas</h3>
-            <p>Plataforma para buscar músicas favoritas e ouvir prévias, com redirecionamento ao Deezer para a reprodução completa.</p>
-          </div>
-        </div>
-
-        <div class="proj">
-          <div class="tags">
-            <span class="tag">TMDB API</span><span class="tag">React</span>
-          </div>
-          <div>
-            <h3>Pesquisa de Filmes</h3>
-            <p>Site de pesquisa de filmes construído a partir da API do TMDB, com busca e detalhes de cada título.</p>
-          </div>
-        </div>
-
-        <div class="proj">
-          <div class="tags">
-            <span class="tag">Next.js</span><span class="tag">Portfólio</span>
-          </div>
-          <div>
-            <h3>Este portfólio</h3>
-            <p>O site que você está vendo agora — construído para reunir resumo, experiência e projetos em um só lugar.</p>
-            <a class="proj-link" href="https://github.com/IsisG13" target="_blank" rel="noopener">ver código →</a>
+          <div class="proj">
+            <div class="tags"><span class="tag">Deezer API</span></div>
+            <h3>Músicas Deezer</h3>
+            <p>Busca de músicas com prévia de áudio, integrada à API do Deezer.</p>
+            <a class="proj-link" href="https://musicas-deezer.vercel.app/" target="_blank" rel="noopener">ver projeto ↗</a>
           </div>
         </div>
       </section>
 
+      <section id="cursos">
+        <div class="head"><span class="num">04</span><h2>Cursos &amp; certificações</h2></div>
+        <ul class="courses">
+          <li><span>Curso de Introdução ao Framework PHP Laravel</span><span class="plat">Udemy</span></li>
+          <li><span>React.js e Next.js (Intermediário e Avançado)</span><span class="plat">Udemy</span></li>
+          <li><span>React + Redux: Fundamentos e 2 Apps do Absoluto Zero</span><span class="plat">Udemy</span></li>
+          <li><span>Introdução à Linguagem CSS</span><span class="plat">Udemy</span></li>
+          <li><span>Angular: Componentes, Template e CLI</span><span class="plat">Alura</span></li>
+          <li><span>Fundamentos do SQL</span><span class="plat">YouTube</span></li>
+        </ul>
+      </section>
+
       <section id="contato">
-        <div class="head"><span class="num">04</span><h2>Contato</h2></div>
+        <div class="head"><span class="num">05</span><h2>Contato</h2></div>
         <p class="lede">Aberta a oportunidades de estágio, freelance ou vaga júnior. O jeito mais rápido de falar comigo é por e-mail ou WhatsApp.</p>
         <div class="contact-grid">
           <a class="contact-card" href="mailto:isissouzaguimaraes@gmail.com">
             <span class="k">e-mail</span><span class="v">isissouzaguimaraes@gmail.com</span>
           </a>
-          <a class="contact-card" href="https://wa.me/5575991674108" target="_blank" rel="noopener">
-            <span class="k">whatsapp</span><span class="v">+55 (75) 99202-8668</span>
+          <a class="contact-card" href="https://wa.me/5575992028668" target="_blank" rel="noopener">
+            <span class="k">whatsapp</span><span class="v">+55 (75) 9 9202-8668</span>
           </a>
           <a class="contact-card" href="https://linkedin.com/in/isis-souza-guimaraes-979163295" target="_blank" rel="noopener">
             <span class="k">linkedin</span><span class="v">isis-souza-guimaraes</span>
