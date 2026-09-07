@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ísis Souza Guimarães — Desenvolvedora Full Stack Júnior</title>
+<meta name="description" content="Portfólio de Ísis Souza Guimarães, desenvolvedora full stack júnior. Projetos, experiência e contato.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10151f;
+    --panel:#171e2c;
+    --line:#293347;
+    --paper:#ede7da;
+    --muted:#93a0b5;
+    --gold:#d4a24c;
+    --sage:#7ea08c;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+  }
+  ::selection{background:var(--gold);color:#10151f;}
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- layout: rail + content ---------- */
+  .frame{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .rail{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    padding:48px 0 32px 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .rail-top .mark{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    color:var(--paper);
+    text-decoration:none;
+  }
+  .rail-top .mark span{color:var(--gold);}
+  nav.filetree{
+    margin-top:56px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+  nav.filetree a{
+    display:block;
+    color:var(--muted);
+    text-decoration:none;
+    padding:7px 0;
+    border-left:2px solid transparent;
+    padding-left:12px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.filetree a:hover, nav.filetree a.active{
+    color:var(--paper);
+    border-left-color:var(--gold);
+  }
+  .rail-bottom{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .content{padding:0 32px 0 0;}
+
+  section{padding:96px 0;border-bottom:1px solid var(--line);}
+  section:last-child{border-bottom:none;}
+
+  /* ---------- hero ---------- */
+  #inicio{padding-top:64px;display:grid;grid-template-columns:1.3fr 0.9fr;gap:48px;align-items:center;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sage);margin:0 0 18px;}
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(38px,5vw,58px);
+    line-height:1.08;
+    margin:0 0 22px;
+    letter-spacing:-0.01em;
+  }
+  .lede{font-size:17px;color:#c7cede;max-width:46ch;margin:0 0 30px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    padding:12px 22px;
+    border-radius:3px;
+    text-decoration:none;
+    display:inline-block;
+    border:1px solid var(--line);
+  }
+  .btn.primary{background:var(--gold);color:#10151f;border-color:var(--gold);}
+  .btn.ghost{color:var(--paper);}
+
+  .photo-frame{
+    justify-self:end;
+    position:relative;
+    width:280px;
+  }
+  .photo-frame .card{
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:14px 14px 22px;
+    transform:rotate(1.4deg);
+  }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    filter:saturate(0.92) contrast(1.02);
+  }
+  .photo-frame .cap{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--muted);
+    margin-top:12px;
+  }
+
+  /* ---------- section heads ---------- */
+  .head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;}
+  .head .num{font-family:'IBM Plex Mono',monospace;color:var(--sage);font-size:13px;}
+  h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:30px;
+    margin:0;
+  }
+
+  /* ---------- sobre ---------- */
+  #sobre p{max-width:64ch;color:#d3d9e6;font-size:16px;}
+  #sobre p + p{margin-top:16px;}
+
+  .stack{display:flex;flex-wrap:wrap;gap:34px;margin-top:36px;}
+  .stack-group h3{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    font-weight:400;
+    margin:0 0 10px;
+    text-transform:lowercase;
+  }
+  .stack-group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+  .stack-group li{font-size:15px;color:var(--paper);}
+
+  /* ---------- experiência (timeline) ---------- */
+  .timeline{border-left:1px solid var(--line);margin-left:6px;}
+  .tl-item{position:relative;padding:2px 0 8px 32px;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-5px;top:6px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+  .tl-role{font-size:17px;font-weight:600;color:var(--paper);margin:0;}
+  .tl-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sage);margin:4px 0 12px;}
+  .tl-item ul{margin:0;padding-left:18px;color:#c7cede;font-size:15px;}
+  .tl-item li{margin-bottom:6px;}
+
+  /* ---------- projetos ---------- */
+  .proj{
+    border-top:1px solid var(--line);
+    padding:26px 0;
+    display:grid;
+    grid-template-columns:1fr 2.4fr;
+    gap:24px;
+    position:relative;
+  }
+  .proj:last-child{border-bottom:1px solid var(--line);}
+  .proj::before{
+    content:"";
+    position:absolute;left:-32px;top:26px;bottom:26px;
+    width:2px;background:transparent;
+    transition:background .18s ease;
+  }
+  .proj:hover::before{background:var(--gold);}
+  .proj h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:21px;
+    margin:0;
+  }
+  .proj p{margin:0 0 14px;color:#c7cede;font-size:15px;max-width:56ch;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--sage);
+    border:1px solid var(--line);
+    padding:4px 9px;
+    border-radius:2px;
+  }
+  .proj-link{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--gold);
+    text-decoration:none;
+    display:inline-block;
+    margin-top:10px;
+  }
+
+  /* ---------- contato ---------- */
+  #contato h2{margin-bottom:16px;}
+  #contato p.lede{color:#c7cede;font-size:16px;max-width:52ch;margin-bottom:34px;}
+  .contact-grid{display:flex;flex-wrap:wrap;gap:14px;}
+  .contact-card{
+    border:1px solid var(--line);
+    padding:18px 20px;
+    min-width:220px;
+    flex:1;
+    text-decoration:none;
+  }
+  .contact-card .k{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);display:block;margin-bottom:6px;}
+  .contact-card .v{font-size:15px;color:var(--paper);}
+  footer{
+    padding:28px 0 60px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /* ---------- reveal-on-load for hero only ---------- */
+  #inicio .eyebrow, #inicio h1, #inicio .lede, #inicio .cta-row, #inicio .photo-frame{
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .6s ease forwards;
+  }
+  #inicio h1{animation-delay:.08s;}
+  #inicio .lede{animation-delay:.16s;}
+  #inicio .cta-row{animation-delay:.24s;}
+  #inicio .photo-frame{animation-delay:.1s;}
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){
+    #inicio .eyebrow, #inicio h1, #inicio .lede, #inicio .cta-row, #inicio .photo-frame{
+      animation:none;opacity:1;transform:none;
+    }
+  }
+
+  a:focus-visible, .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    .frame{grid-template-columns:1fr;}
+    .rail{position:relative;height:auto;flex-direction:row;align-items:center;justify-content:space-between;padding:24px 32px;}
+    nav.filetree{display:flex;gap:16px;margin-top:0;}
+    nav.filetree a{padding-left:0;border-left:none;border-bottom:2px solid transparent;}
+    nav.filetree a:hover, nav.filetree a.active{border-bottom-color:var(--gold);}
+    .rail-bottom{display:none;}
+    .content{padding:0 32px;}
+    #inicio{grid-template-columns:1fr;gap:32px;padding-top:24px;}
+    .photo-frame{justify-self:start;width:220px;}
+    .proj{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <aside class="rail">
+    <div class="rail-top">
+      <a class="mark" href="#inicio">I<span>.</span>SG</a>
+      <nav class="filetree">
+        <a href="#sobre">sobre.md</a>
+        <a href="#experiencia">experiencia.md</a>
+        <a href="#projetos">projetos.md</a>
+        <a href="#contato">contato.md</a>
+      </nav>
+    </div>
+    <div class="rail-bottom">
+      Feira de Santana, BA<br>Brasil
+    </div>
+  </aside>
+
+  <div class="content">
+    <div class="wrap" style="padding:0;">
+
+      <section id="inicio">
+        <div>
+          <p class="eyebrow">Desenvolvedora full stack júnior</p>
+          <h1 class="title">Ísis Souza Guimarães</h1>
+          <p class="lede">Estudante do 3º ano do ensino médio construindo software profissionalmente desde 2025 — de páginas em Laravel a interfaces em React. Gosto de aprender rápido e entregar coisas que funcionam de verdade.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#projetos">Ver projetos</a>
+            <a class="btn ghost" href="#contato">Falar comigo</a>
+          </div>
+        </div>
+        <div class="photo-frame">
+          <div class="card">
+            <img src="assets/foto.jpg" alt="Foto de Ísis Souza Guimarães">
+            <p class="cap">Feira de Santana, BA</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre">
+        <div class="head"><span class="num">01</span><h2>Sobre</h2></div>
+        <p>Trabalho meio período como desenvolvedora web, no ciclo completo de back-end — da modelagem do banco de dados até a entrega de funcionalidades — usando Laravel, Blade, phpMyAdmin e MySQL no dia a dia.</p>
+        <p>Fora do trabalho, estudo React, Next.js, Angular e Java com Spring Boot, e uso projetos pessoais para testar essas tecnologias na prática. Estou em busca de estágio, freelances ou uma vaga júnior para continuar crescendo como desenvolvedora.</p>
+
+        <div class="stack">
+          <div class="stack-group">
+            <h3>front-end</h3>
+            <ul><li>HTML &amp; CSS</li><li>JavaScript</li><li>React.js</li><li>Next.js</li><li>Angular</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>back-end</h3>
+            <ul><li>Laravel &amp; Blade</li><li>PHP</li><li>Java (Spring Boot)</li><li>REST API</li><li>FastAPI</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>dados</h3>
+            <ul><li>MySQL</li><li>phpMyAdmin</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>idiomas</h3>
+            <ul><li>Português — nativo</li><li>Inglês — intermediário</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="experiencia">
+        <div class="head"><span class="num">02</span><h2>Experiência</h2></div>
+        <div class="timeline">
+          <div class="tl-item">
+            <p class="tl-role">Desenvolvedora Web — Meio Período</p>
+            <p class="tl-meta">Empresa de Tecnologia · Período vespertino · Fev 2025 – Atual</p>
+            <ul>
+              <li>Desenvolvimento e manutenção de sites com Laravel, Blade, phpMyAdmin e MySQL</li>
+              <li>Participação em todo o ciclo de back-end, da modelagem do banco à entrega de funcionalidades</li>
+              <li>Boas práticas de programação e organização de código em ambiente profissional</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <p class="tl-role">Ensino Médio</p>
+            <p class="tl-meta">Colégio Estadual Polivalente de Feira de Santana · Fev 2024 – Presente</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projetos">
+        <div class="head"><span class="num">03</span><h2>Projetos</h2></div>
+
+        <div class="proj">
+          <div class="tags">
+            <span class="tag">JavaScript</span><span class="tag">HTML/CSS</span>
+          </div>
+          <div>
+            <h3>Gerador de Senhas</h3>
+            <p>Aplicação web para criar senhas aleatórias e seguras, com a quantidade de caracteres definida pelo próprio usuário.</p>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="tags">
+            <span class="tag">Auth</span><span class="tag">Full stack</span>
+          </div>
+          <div>
+            <h3>S-Mario</h3>
+            <p>Site cujo conteúdo só é exibido depois que o usuário faz login — meu primeiro projeto com autenticação de ponta a ponta.</p>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="tags">
+            <span class="tag">API</span><span class="tag">Deezer</span>
+          </div>
+          <div>
+            <h3>Músicas</h3>
+            <p>Plataforma para buscar músicas favoritas e ouvir prévias, com redirecionamento ao Deezer para a reprodução completa.</p>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="tags">
+            <span class="tag">TMDB API</span><span class="tag">React</span>
+          </div>
+          <div>
+            <h3>Pesquisa de Filmes</h3>
+            <p>Site de pesquisa de filmes construído a partir da API do TMDB, com busca e detalhes de cada título.</p>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="tags">
+            <span class="tag">Next.js</span><span class="tag">Portfólio</span>
+          </div>
+          <div>
+            <h3>Este portfólio</h3>
+            <p>O site que você está vendo agora — construído para reunir resumo, experiência e projetos em um só lugar.</p>
+            <a class="proj-link" href="https://github.com/IsisG13" target="_blank" rel="noopener">ver código →</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato">
+        <div class="head"><span class="num">04</span><h2>Contato</h2></div>
+        <p class="lede">Aberta a oportunidades de estágio, freelance ou vaga júnior. O jeito mais rápido de falar comigo é por e-mail ou WhatsApp.</p>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:isissouzaguimaraes@gmail.com">
+            <span class="k">e-mail</span><span class="v">isissouzaguimaraes@gmail.com</span>
+          </a>
+          <a class="contact-card" href="https://wa.me/5575991674108" target="_blank" rel="noopener">
+            <span class="k">whatsapp</span><span class="v">+55 (75) 99167-4108</span>
+          </a>
+          <a class="contact-card" href="https://linkedin.com/in/isis-souza-guimaraes-979163295" target="_blank" rel="noopener">
+            <span class="k">linkedin</span><span class="v">isis-souza-guimaraes</span>
+          </a>
+          <a class="contact-card" href="https://github.com/IsisG13" target="_blank" rel="noopener">
+            <span class="k">github</span><span class="v">IsisG13</span>
+          </a>
+        </div>
+      </section>
+
+      <footer>© <span id="year"></span> Ísis Souza Guimarães</footer>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const links = document.querySelectorAll('nav.filetree a');
+  const sections = [...links].map(l => document.querySelector(l.getAttribute('href')));
+  const setActive = () => {
+    let idx = 0;
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top <= 120) idx = i; });
+    links.forEach(l => l.classList.remove('active'));
+    links[idx].classList.add('active');
+  };
+  document.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+</body>
+</html>
